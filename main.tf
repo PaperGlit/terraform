@@ -1,21 +1,21 @@
-# module "table_authors" {
-#     source = "./modules/dynamodb"
-#     table_name = "authors"
-#     context = module.label.context
-# }
+module "table_authors" {
+    source = "./modules/dynamodb"
+    table_name = "authors"
+    context = module.label.context
+}
 
-# module "table_courses" {
-#     source = "./modules/dynamodb"
-#     table_name = "courses"
-#     context = module.label.context
-# }
+module "table_courses" {
+    source = "./modules/dynamodb"
+    table_name = "courses"
+    context = module.label.context
+}
 
 module "authors_read_role" {
   source = "./modules/iam"
   rule_name = "authors_read_role"
   policy_name =  "authors_read"
   policy_action = "dynamodb:Scan"
-  arn = "arn:aws:dynamodb:eu-central-1:992382748106:table/authors"
+  arn = module.table_authors.arn
 }
 
 module "courses_put_role" {
@@ -23,7 +23,7 @@ module "courses_put_role" {
   rule_name = "courses_put_role"
   policy_name = "courses_put"
   policy_action = "dynamodb:PutItem"
-  arn = "arn:aws:dynamodb:eu-central-1:992382748106:table/courses"
+  arn = module.table_courses.arn
 }
 
 module "courses_read_role" {
@@ -31,7 +31,7 @@ module "courses_read_role" {
     rule_name = "courses_read_role"
     policy_name = "courses_read"
     policy_action = "dynamodb:Scan"
-    arn = "arn:aws:dynamodb:eu-central-1:992382748106:table/courses"
+    arn = module.table_courses.arn
   }
 
 module "courses_read_one_role" {
@@ -39,7 +39,7 @@ module "courses_read_one_role" {
   rule_name = "courses_read_one_role"
   policy_name = "courses_read_one"
   policy_action = "dynamodb:GetItem"
-  arn = "arn:aws:dynamodb:eu-central-1:992382748106:table/courses"
+  arn = module.table_courses.arn
 }
 
 module "courses_delete_role" {
@@ -47,7 +47,7 @@ module "courses_delete_role" {
   rule_name = "courses_delete_rule"
   policy_name = "courses_delete"
   policy_action = "dynamodb:DeleteItem"
-  arn = "arn:aws:dynamodb:eu-central-1:992382748106:table/courses"
+  arn = module.table_courses.arn
 }
 
 data "archive_file" "authors_read_zip" {

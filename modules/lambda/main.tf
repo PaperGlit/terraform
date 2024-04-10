@@ -4,13 +4,13 @@ module "label" {
     environment = var.environment
     namespace = var.namespace
     stage = var.stage
-    delimiter = "-"
+    delimiter = "_"
     label_order = var.label_order
 }
 
 resource "aws_lambda_function" "this_function" {
   filename         = var.zip_name
-  function_name    = var.function
+  function_name    = "${module.label.id}${module.label.delimiter}${var.function}"
   role             = var.role
   handler          = "index.handler"
   source_code_hash = var.zip_hash
@@ -20,6 +20,6 @@ resource "aws_lambda_function" "this_function" {
 resource "aws_lambda_permission" "this_api" {
   statement_id  = var.statement
   action        = "lambda:InvokeFunction"
-  function_name = var.function
+  function_name = aws_lambda_function.this_function.function_name
   principal     = "apigateway.amazonaws.com"
 }

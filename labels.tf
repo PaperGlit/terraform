@@ -4,6 +4,6 @@ module "label" {
     environment = var.environment
     namespace = var.namespace
     stage = var.stage
-    delimiter = "-"
+    delimiter = "_"
     label_order = var.label_order
 }

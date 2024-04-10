@@ -102,7 +102,7 @@ variable "enabled" {
 
 variable "namespace" {
   type        = string
-  default     = null
+  default     = "lpnu"
   description = "ID element. Usually an abbreviation of your organization name, e.g. 'eg' or 'cp', to help ensure generated IDs are globally unique"
 }
 
@@ -114,19 +114,19 @@ variable "tenant" {
 
 variable "environment" {
   type        = string
-  default     = null
+  default     = "lazar"
   description = "ID element. Usually used for region e.g. 'uw2', 'us-west-2', OR role 'prod', 'staging', 'dev', 'UAT'"
 }
 
 variable "stage" {
   type        = string
-  default     = null
+  default     = "dev"
   description = "ID element. Usually used to indicate role, e.g. 'prod', 'staging', 'source', 'build', 'test', 'deploy', 'release'"
 }
 
 variable "name" {
   type        = string
-  default     = null
+  default     = "lazar"
   description = <<-EOT
     ID element. Usually the component or solution name, e.g. 'app' or 'jenkins'.
     This is the only ID element not also included as a `tag`.
@@ -136,7 +136,7 @@ variable "name" {
 
 variable "delimiter" {
   type        = string
-  default     = null
+  default     = "-"
   description = <<-EOT
     Delimiter to be used between ID elements.
     Defaults to `-` (hyphen). Set to `""` to use no delimiter at all.
