@@ -10,7 +10,7 @@ module "label" {
 
 resource "aws_lambda_function" "this_function" {
   filename         = var.zip_name
-  function_name    = "${module.label.id}${module.label.delimiter}${var.function}"
+  function_name    = var.function
   role             = var.role
   handler          = "index.handler"
   source_code_hash = var.zip_hash
@@ -20,6 +20,6 @@ resource "aws_lambda_function" "this_function" {
 resource "aws_lambda_permission" "this_api" {
   statement_id  = var.statement
   action        = "lambda:InvokeFunction"
-  function_name = aws_lambda_function.this_function.function_name
+  function_name = var.function
   principal     = "apigateway.amazonaws.com"
 }

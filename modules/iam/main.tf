@@ -10,7 +10,7 @@ module "label" {
 }
 
 resource "aws_iam_role" "this" {
-  name = "${module.label.id}${module.label.delimiter}${var.rule_name}"
+  name = var.rule_name
 
   assume_role_policy = jsonencode({
     Version   = "2012-10-17",

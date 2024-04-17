@@ -6,7 +6,7 @@ const dynamodb = new AWS.DynamoDB({
 
 exports.handler = (event, context, callback) => {
   const params = {
-    TableName: "authors"
+    TableName: "lpnu_lazar_dev_authors"
   };
   dynamodb.scan(params, (err, data) => {
     if(err) {

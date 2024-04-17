@@ -3,7 +3,7 @@ module "table_authors" {
     table_name = "authors"
     context = module.label.context
 }
-
+   
 module "table_courses" {
     source = "./modules/dynamodb"
     table_name = "courses"
@@ -32,7 +32,7 @@ module "courses_read_role" {
     policy_name = "courses_read"
     policy_action = "dynamodb:Scan"
     arn = module.table_courses.arn
-  }
+}
 
 module "courses_read_one_role" {
   source = "./modules/iam"
