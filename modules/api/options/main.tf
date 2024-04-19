@@ -1,3 +1,13 @@
+module "label" {
+    source = "cloudposse/label/null"
+    version = "0.25.0"
+    environment = var.environment
+    namespace = var.namespace
+    stage = var.stage
+    delimiter = "_"
+    label_order = var.label_order
+}
+
 resource "aws_api_gateway_method" "this_options" {
   rest_api_id   = var.rest_id
   resource_id   = var.resource_id
