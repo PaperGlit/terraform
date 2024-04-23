@@ -48,6 +48,6 @@ resource "aws_api_gateway_method_response" "this" {
   status_code = "200"
   response_models = { "application/json" = "Empty" }
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Origin" = true
+    "method.response.header.Access-Control-Allow-Origin" = false
   }
 }
