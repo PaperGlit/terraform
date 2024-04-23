@@ -7,7 +7,7 @@ module "template_files" {
 }
 
 resource "aws_s3_bucket" "this" {
-    bucket = "lpnu-lazar-dev"
+    bucket = module.s3_label.id
     tags = {
         Name = "S3 Bucket"
         Environment = "dev"
